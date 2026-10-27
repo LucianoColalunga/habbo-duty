@@ -4,6 +4,7 @@
  * dependencias fijadas y una búsqueda simple de secretos.
  */
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { test } from "node:test";
@@ -78,7 +79,17 @@ test("dependencias mínimas: nada en producción y versiones fijas", () => {
 });
 
 test("no hay secretos en los archivos del repositorio", () => {
+  // Lo que git subiría (versionado + nuevo no ignorado). Sin git, recorre la carpeta.
   const skip = new Set(["node_modules", "dist", ".git", ".vercel"]);
+  let candidates;
+  try {
+    candidates = execFileSync("git", ["ls-files", "-co", "--exclude-standard", "-z"], { cwd: root, encoding: "utf8" })
+      .split("\0")
+      .filter(Boolean)
+      .map((f) => join(root, f));
+  } catch {
+    candidates = walk(root, skip);
+  }
   const binary = /\.(png|woff2|ico|jpg|jpeg|gif|webp)$/i;
   const patterns = [
     [/AKIA[0-9A-Z]{16}/, "clave de AWS"],
@@ -90,7 +101,7 @@ test("no hay secretos en los archivos del repositorio", () => {
     [/discord(app)?\.com\/api\/webhooks\/\d+\/[\w-]+/i, "webhook de Discord"],
     [/(api[_-]?key|secret|token|password)\s*[:=]\s*["'][^"'\s]{12,}["']/i, "credencial en texto"],
   ];
-  const files = walk(root, skip).filter((f) => !binary.test(f));
+  const files = candidates.filter((f) => !binary.test(f));
   assert.ok(files.length > 10);
   for (const file of files) {
     const text = readFileSync(file, "utf8");
