@@ -2,6 +2,8 @@
 
 Landing page de **Habbo Duty**, un juego de la comunidad de Habbo con salas clásicas convertidas en zonas de combate táctico: duelos **1 vs 1**, estrategia **2 vs 2** y guerras **5 vs 5** entre kekos con pistolas, rifles y espadas.
 
+**Sitio publicado:** <https://habbo-duty.vercel.app>
+
 ![Vista previa de Habbo Duty](public/assets/img/og-image.png)
 
 > Fan site de la comunidad. No está afiliado, patrocinado ni aprobado por Sulake Oy ni por Habbo. Habbo es una marca registrada de Sulake Oy.
@@ -100,6 +102,8 @@ vercel --prod
 ```
 
 El CLI de Vercel no lee `.gitignore`: lo que se sube lo define `.vercelignore`.
+
+Por ahora se publica con el CLI. Para que cada push a `main` se publique solo, hay que conectar el repositorio en Vercel → proyecto `habbo-duty` → Settings → Git.
 
 ## Accesibilidad
 

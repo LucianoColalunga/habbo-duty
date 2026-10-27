@@ -16,7 +16,7 @@ Es un sitio **estático**: no tiene servidor propio, base de datos, cuentas de u
 ## Auditoría de seguridad
 
 - **Fecha:** 27/10/2026
-- **Versión auditada:** 1.0.0 (primer commit del repositorio)
+- **Versión auditada:** 1.0.0 (publicada en <https://habbo-duty.vercel.app>)
 - **Método:** revisión del código y la configuración, pruebas automáticas (`npm test`), inspección de las cabeceras reales con la vista previa local, pruebas en navegador (Chromium) en escritorio, tablet y celular escuchando violaciones de CSP, `npm audit` y `npm audit signatures`, y revisión de la configuración de seguridad del repositorio en GitHub.
 
 ### Resumen
@@ -25,7 +25,7 @@ Es un sitio **estático**: no tiene servidor propio, base de datos, cuentas de u
 | --- | --- | --- |
 | Alta | 3 | 3 |
 | Media | 6 | 6 |
-| Baja | 5 | 5 |
+| Baja | 7 | 7 |
 | Informativa | 4 | — |
 
 ### Hallazgos y cómo se resolvió cada uno
@@ -46,10 +46,12 @@ Es un sitio **estático**: no tiene servidor propio, base de datos, cuentas de u
 | HD-12 | Baja | APIs del navegador que el sitio no usa (cámara, micrófono, ubicación, pagos…) quedaban disponibles para código inyectado. | `Permissions-Policy` las deshabilita todas. Además `Cross-Origin-Opener-Policy` y `Cross-Origin-Resource-Policy` en `same-origin`. | Prueba de cabeceras; sin advertencias en la consola. |
 | HD-13 | Baja | **Path traversal** en el servidor de vista previa local (`/../package.json`). | `resolveInside` normaliza y bloquea cualquier ruta fuera de `dist/` (incluye `%2e%2e`, `%2f` y bytes nulos). Escucha solo en `127.0.0.1` y solo acepta GET/HEAD. No se usa en producción. | `tests/security.test.mjs` y `curl --path-as-is` → 404. |
 | HD-14 | Baja | Usar arte o logos oficiales de Habbo/Sulake (riesgo legal y de licencias). | Todo el arte es **propio** (generado con `tools/art/`) y el pie aclara que es un fan site no afiliado. | Revisión manual de `public/assets/`. |
-| HD-15 | Info | La CSP en `<meta>` no admite `frame-ancestors`. | La CSP principal viaja como **cabecera** (Vercel). El `<meta>` es un respaldo si el sitio se sirve sin cabeceras; se genera desde `vercel.json` (una sola fuente) sin esa directiva. | `cspForMeta` + prueba. |
-| HD-16 | Info | GitHub Actions no está disponible en la cuenta, así que no hay CI automático. | Los controles se corren en local antes de cada push: `npm run check` (build + 38 pruebas + `npm audit`). | — |
-| HD-17 | Info | En los despliegues de **vista previa** de Vercel, la barra de herramientas de Vercel queda bloqueada por la CSP. | Es esperado: no afecta a producción. | — |
-| HD-18 | Info | Los enlaces de Discord y redes están vacíos (se muestran como "Próximamente"). | Cuando se carguen, el build los valida (solo `https://`). El contenido de sitios externos queda fuera del alcance. | — |
+| HD-15 | Baja | Al enlazar el proyecto, el **CLI de Vercel creó `.env.local` con un token** (`VERCEL_OIDC_TOKEN`) y agregó reglas propias a `.gitignore` (una de ellas, `.env*`, pisaba excepciones). | El sitio no usa ese token: se **borró** el archivo y se revirtió el cambio en `.gitignore`. Las reglas existentes (`.env.*` en `.gitignore` y `.vercelignore`) ya impedían subirlo. | `git status` limpio; `/.env.local` en producción → 404; la búsqueda de secretos revisa lo que git subiría. |
+| HD-16 | Baja | Aparecieron en la carpeta dos **copias `.bundle` de otro repositorio** (historial completo de otro proyecto) que se podían colar en un commit o en el deploy. | `*.bundle` en `.gitignore` y `.vercelignore`. Los archivos no se tocaron (no son de este proyecto). | `/PortfolioLC-limpio.bundle` en producción → 404; no figuran en el repositorio. |
+| HD-17 | Info | La CSP en `<meta>` no admite `frame-ancestors`. | La CSP principal viaja como **cabecera** (Vercel). El `<meta>` es un respaldo si el sitio se sirve sin cabeceras; se genera desde `vercel.json` (una sola fuente) sin esa directiva. | `cspForMeta` + prueba. |
+| HD-18 | Info | GitHub Actions no está disponible en la cuenta, así que no hay CI automático. | Los controles se corren en local antes de cada push: `npm run check` (build + 38 pruebas + `npm audit`). | — |
+| HD-19 | Info | En los despliegues de **vista previa** de Vercel, la barra de herramientas de Vercel queda bloqueada por la CSP. | Es esperado: no afecta a producción. | — |
+| HD-20 | Info | Los enlaces de Discord y redes están vacíos (se muestran como "Próximamente"). | Cuando se carguen, el build los valida (solo `https://`). El contenido de sitios externos queda fuera del alcance. | — |
 
 ### Cabeceras en producción
 
@@ -69,12 +71,15 @@ X-Permitted-Cross-Domain-Policies: none
 
 | Función | Estado |
 | --- | --- |
-| Secret scanning | Activado |
+| Secret scanning (Secret Protection) | Activado |
 | Push protection (bloquea pushes con secretos) | Activado |
 | Dependency graph | Activado |
 | Dependabot alerts | Activado |
 | Private vulnerability reporting | Activado |
-| Dependabot version updates | No configurado: depende de GitHub Actions, que no está disponible en la cuenta. Las dependencias se revisan con `npm run audit`. |
+| Dependabot security updates y version updates | Apagados: abren pull requests con GitHub Actions, que no está disponible en la cuenta. Las alertas siguen llegando y las dependencias se revisan con `npm run audit`. |
+| Colaboradores | Solo el dueño (LucianoColalunga). |
+
+Revisado el 27/10/2026 en *Settings → Advanced Security* del repositorio.
 
 ### Cómo repetir la auditoría
 
