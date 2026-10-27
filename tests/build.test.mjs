@@ -7,6 +7,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { before, describe, test } from "node:test";
 import { fileURLToPath } from "node:url";
+import config from "../src/config/site.config.mjs";
 
 const root = new URL("../", import.meta.url);
 const dist = new URL("dist/", root);
@@ -76,8 +77,12 @@ test("la landing tiene todas las secciones pedidas", () => {
 
 test("los archivos auxiliares se generan", () => {
   assert.match(read("robots.txt"), /User-agent: \*/);
-  assert.match(read(".well-known/security.txt"), /^Contact: https:\/\//m);
-  assert.match(read(".well-known/security.txt"), /^Expires: /m);
+  // security.txt solo existe si hay un contacto configurado.
+  assert.equal(existsSync(new URL(".well-known/security.txt", dist)), Boolean(config.securityContact));
+  if (config.securityContact) {
+    assert.match(read(".well-known/security.txt"), /^Contact: https:\/\//m);
+    assert.match(read(".well-known/security.txt"), /^Expires: /m);
+  }
   assert.equal(JSON.parse(read("site.webmanifest")).lang, "es");
   assert.ok(existsSync(new URL("assets/css/main.css", dist)));
   assert.ok(existsSync(new URL("assets/js/main.js", dist)));

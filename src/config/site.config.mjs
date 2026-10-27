@@ -35,14 +35,18 @@ export default {
     { id: "x", label: "X (Twitter)", url: "" },
   ],
 
-  /** Repositorio con el código del sitio (se muestra en el pie). */
-  sourceUrl: "https://github.com/LucianoColalunga/habbo-duty",
+  /**
+   * Repositorio con el código del sitio (enlace "Código del sitio" en el pie).
+   * Vacío a propósito: la URL de GitHub lleva el nombre del dueño.
+   */
+  sourceUrl: "",
 
   /**
    * Dónde reportar problemas de seguridad (se publica en
-   * /.well-known/security.txt). Usa los avisos privados de GitHub.
+   * /.well-known/security.txt). Vacío a propósito por el mismo motivo: si se
+   * completa, se genera el archivo.
    */
-  securityContact: "https://github.com/LucianoColalunga/habbo-duty/security/advisories/new",
+  securityContact: "",
 
   /** Color de la barra del navegador en celulares. */
   themeColor: "#07080a",

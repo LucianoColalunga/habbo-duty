@@ -2,10 +2,9 @@
 
 ## Cómo reportar un problema
 
-Si encontrás una vulnerabilidad, **no abras un issue público**. Reportala en privado desde la pestaña **Security → Report a vulnerability** del repositorio:
-<https://github.com/LucianoColalunga/habbo-duty/security/advisories/new>
+Si encontrás una vulnerabilidad, **no abras un issue público**. Reportala en privado desde la pestaña **Security → Report a vulnerability** de este repositorio (avisos privados de GitHub).
 
-El sitio también publica ese contacto en `/.well-known/security.txt` (RFC 9116).
+El sitio puede publicar ese contacto en `/.well-known/security.txt` (RFC 9116) completando `securityContact` en `src/config/site.config.mjs`. Hoy está vacío a propósito para que ninguna URL del sitio muestre el nombre del dueño.
 
 ## Alcance
 
@@ -25,7 +24,7 @@ Es un sitio **estático**: no tiene servidor propio, base de datos, cuentas de u
 | --- | --- | --- |
 | Alta | 3 | 3 |
 | Media | 6 | 6 |
-| Baja | 7 | 7 |
+| Baja | 8 | 8 |
 | Informativa | 4 | — |
 
 ### Hallazgos y cómo se resolvió cada uno
@@ -48,10 +47,11 @@ Es un sitio **estático**: no tiene servidor propio, base de datos, cuentas de u
 | HD-14 | Baja | Usar arte o logos oficiales de Habbo/Sulake (riesgo legal y de licencias). | Todo el arte es **propio** (generado con `tools/art/`) y el pie aclara que es un fan site no afiliado. | Revisión manual de `public/assets/`. |
 | HD-15 | Baja | Al enlazar el proyecto, el **CLI de Vercel creó `.env.local` con un token** (`VERCEL_OIDC_TOKEN`) y agregó reglas propias a `.gitignore` (una de ellas, `.env*`, pisaba excepciones). | El sitio no usa ese token: se **borró** el archivo y se revirtió el cambio en `.gitignore`. Las reglas existentes (`.env.*` en `.gitignore` y `.vercelignore`) ya impedían subirlo. | `git status` limpio; `/.env.local` en producción → 404; la búsqueda de secretos revisa lo que git subiría. |
 | HD-16 | Baja | Aparecieron en la carpeta dos **copias `.bundle` de otro repositorio** (historial completo de otro proyecto) que se podían colar en un commit o en el deploy. | `*.bundle` en `.gitignore` y `.vercelignore`. Los archivos no se tocaron (no son de este proyecto). | `/PortfolioLC-limpio.bundle` en producción → 404; no figuran en el repositorio. |
-| HD-17 | Info | La CSP en `<meta>` no admite `frame-ancestors`. | La CSP principal viaja como **cabecera** (Vercel). El `<meta>` es un respaldo si el sitio se sirve sin cabeceras; se genera desde `vercel.json` (una sola fuente) sin esa directiva. | `cspForMeta` + prueba. |
-| HD-18 | Info | GitHub Actions no está disponible en la cuenta, así que no hay CI automático. | Los controles se corren en local antes de cada push: `npm run check` (build + 38 pruebas + `npm audit`). | — |
-| HD-19 | Info | En los despliegues de **vista previa** de Vercel, la barra de herramientas de Vercel queda bloqueada por la CSP. | Es esperado: no afecta a producción. | — |
-| HD-20 | Info | Los enlaces de Discord y redes están vacíos (se muestran como "Próximamente"). | Cuando se carguen, el build los valida (solo `https://`). El contenido de sitios externos queda fuera del alcance. | — |
+| HD-17 | Baja | **Privacidad:** el enlace "Código del sitio" del pie y el contacto de `security.txt` apuntaban a URLs de GitHub que muestran el nombre del dueño. | Se vaciaron `sourceUrl` y `securityContact` en la configuración: el pie ya no muestra ese enlace y `security.txt` solo se genera si hay un contacto. La única dirección pública es `habbo-duty.vercel.app`; las direcciones automáticas de Vercel que incluyen el usuario de la cuenta piden iniciar sesión (Deployment Protection). | Ninguna URL del HTML, `robots.txt`, `sitemap.xml` ni del manifest contiene el usuario; las direcciones automáticas de Vercel responden 302 al login. |
+| HD-18 | Info | La CSP en `<meta>` no admite `frame-ancestors`. | La CSP principal viaja como **cabecera** (Vercel). El `<meta>` es un respaldo si el sitio se sirve sin cabeceras; se genera desde `vercel.json` (una sola fuente) sin esa directiva. | `cspForMeta` + prueba. |
+| HD-19 | Info | GitHub Actions no está disponible en la cuenta, así que no hay CI automático. | Los controles se corren en local antes de cada push: `npm run check` (build + 38 pruebas + `npm audit`). | — |
+| HD-20 | Info | En los despliegues de **vista previa** de Vercel, la barra de herramientas de Vercel queda bloqueada por la CSP. | Es esperado: no afecta a producción. | — |
+| HD-21 | Info | Los enlaces de Discord y redes están vacíos (se muestran como "Próximamente"). | Cuando se carguen, el build los valida (solo `https://`). El contenido de sitios externos queda fuera del alcance. | — |
 
 ### Cabeceras en producción
 
