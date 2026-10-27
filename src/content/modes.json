@@ -1,0 +1,77 @@
+{
+  "eyebrow": "Elige tu combate",
+  "title": "Modos de juego",
+  "intro": "Tres formatos para todos los estilos: desde el duelo de puntería hasta la guerra total entre clanes.",
+  "tacticsLabel": "Ver tácticas",
+  "tacticsLabelOpen": "Ocultar tácticas",
+  "tacticsTitle": "Tácticas",
+  "labels": { "players": "Jugadores", "weapons": "Armas", "focus": "Clave" },
+  "items": [
+    {
+      "id": "1v1",
+      "badge": "1 vs 1",
+      "accent": "red",
+      "title": "Duelo individual",
+      "tagline": "Tú contra otro keko. Sin excusas.",
+      "description": "Duelos cara a cara con pistolas y espadas. Gana quien tenga mejor puntería, mejores reflejos y mejor lectura del rival.",
+      "players": "2 jugadores",
+      "weapons": ["Pistolas", "Espadas"],
+      "focus": "Habilidad individual",
+      "image": {
+        "src": "/assets/img/mode-1v1.svg",
+        "width": 420,
+        "height": 280,
+        "alt": "Un agente con pistola y un ninja con katana se enfrentan en una plataforma con borde rojo de neón."
+      },
+      "tips": [
+        "Muévete en diagonal: es más difícil apuntarte.",
+        "Con pistola, guarda distancia; con espada, acorta camino.",
+        "Usa las esquinas de la sala para cubrirte."
+      ]
+    },
+    {
+      "id": "2v2",
+      "badge": "2 vs 2",
+      "accent": "blue",
+      "title": "Estrategia en parejas",
+      "tagline": "Dos mentes, un plan.",
+      "description": "Combina armas con tu compañero: uno cubre a distancia mientras el otro flanquea. La coordinación vale más que la puntería.",
+      "players": "4 jugadores",
+      "weapons": ["Pistolas", "Rifles", "Espadas"],
+      "focus": "Coordinación",
+      "image": {
+        "src": "/assets/img/mode-2v2.svg",
+        "width": 420,
+        "height": 280,
+        "alt": "Dos parejas de kekos, una con soldado y agente y otra con ninja y soldado, combaten en una plataforma con borde azul de neón."
+      },
+      "tips": [
+        "Repartan roles: uno a distancia y otro cuerpo a cuerpo.",
+        "Avisen a quién apuntan para no dividir el fuego.",
+        "Nunca dejen solo a su compañero en una esquina."
+      ]
+    },
+    {
+      "id": "5v5",
+      "badge": "5 vs 5",
+      "accent": "green",
+      "title": "Guerra total",
+      "tagline": "Clanes, banderas y caos organizado.",
+      "description": "Batallas entre clanes o equipos de cinco. Formaciones, capitanes y control del mapa deciden quién se queda con la sala.",
+      "players": "10 jugadores",
+      "weapons": ["Pistolas", "Rifles", "Espadas"],
+      "focus": "Trabajo en equipo",
+      "image": {
+        "src": "/assets/img/mode-5v5.svg",
+        "width": 420,
+        "height": 280,
+        "alt": "Dos clanes de cinco kekos cada uno se disparan y se enfrentan con espadas en una plataforma con borde verde de neón."
+      },
+      "tips": [
+        "Elijan un capitán que marque los objetivos.",
+        "Avancen en grupo: un keko solo es un blanco fácil.",
+        "Controlen el centro del mapa antes de atacar las bases."
+      ]
+    }
+  ]
+}

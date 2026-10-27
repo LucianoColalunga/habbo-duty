@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "Habbo Duty · Combate táctico en las salas de Habbo",
+    "description": "Habbo Duty es un juego de la comunidad de Habbo: duelos 1 vs 1, estrategia 2 vs 2 y guerras 5 vs 5 entre kekos con pistolas, rifles y espadas en salas clásicas de combate.",
+    "ogImage": "/assets/img/og-image.png",
+    "ogImageAlt": "Kekos en pixel art combatiendo en una sala isométrica de guerra, con el logo de Habbo Duty"
+  },
+  "navigation": [
+    { "label": "Inicio", "href": "#inicio" },
+    { "label": "Modos de Juego", "href": "#modos" },
+    { "label": "Mapas", "href": "#mapas" },
+    { "label": "Cómo Jugar", "href": "#como-jugar" },
+    { "label": "Comunidad", "href": "#comunidad" }
+  ],
+  "navCta": "Jugar Ahora",
+  "mobileCta": "Entrar al Hotel",
+  "hero": {
+    "eyebrow": "Juego de la comunidad de Habbo",
+    "title": "El [campo de batalla] de Habbo te espera",
+    "subtitle": "Duelos 1 vs 1, estrategia 2 vs 2 y guerras 5 vs 5 entre kekos armados con pistolas, rifles y espadas. Salas clásicas convertidas en zonas de combate táctico.",
+    "primaryCta": { "label": "Unirse al Juego", "href": "#como-jugar" },
+    "secondaryCta": { "label": "Ver Mapas", "href": "#mapas" },
+    "stats": [
+      { "value": "3", "label": "modos de juego" },
+      { "value": "2", "label": "mapas de combate" },
+      { "value": "3", "label": "tipos de arma" }
+    ],
+    "image": {
+      "src": "/assets/img/hero-battle.svg",
+      "width": 700,
+      "height": 480,
+      "alt": "Ilustración en pixel art: en una sala isométrica de guerra, kekos del equipo verde con rifles y pistolas se enfrentan a kekos del equipo rojo con katana, rifle y pistola."
+    },
+    "imageLabel": "Vista de sala · Zona de guerra",
+    "ticker": ["1 vs 1", "2 vs 2", "5 vs 5", "Pistolas", "Rifles", "Espadas", "Clanes", "Salas clásicas"]
+  },
+  "footer": {
+    "tagline": "Combate táctico creado por y para la comunidad de Habbo.",
+    "disclaimer": "Habbo Duty es un fan site de la comunidad. No está afiliado, patrocinado ni aprobado por Sulake Oy ni por Habbo. Habbo es una marca registrada de Sulake Oy.",
+    "credits": "Ilustraciones y pixel art originales. Fuentes con licencia SIL Open Font License.",
+    "sourceLabel": "Código del sitio",
+    "backToTop": "Volver arriba"
+  },
+  "soonLabel": "Próximamente"
+}

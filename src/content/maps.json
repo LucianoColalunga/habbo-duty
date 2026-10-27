@@ -1,0 +1,41 @@
+{
+  "eyebrow": "Zonas de combate",
+  "title": "Mapas destacados",
+  "intro": "Cada sala cambia la forma de jugar. Conoce el terreno antes de entrar.",
+  "tablistLabel": "Elegir mapa",
+  "labels": { "features": "Qué vas a encontrar", "bestFor": "Ideal para", "playstyle": "Estilo de juego" },
+  "items": [
+    {
+      "id": "guerra",
+      "name": "Mapa de Guerra",
+      "tag": "Zona militar",
+      "accent": "green",
+      "description": "Una zona militar de estilo urbano y bélico: trincheras para avanzar a cubierto, barricadas de sacos de arena, búnkeres que sirven de base para cada equipo y una torre de vigilancia que domina todo el terreno.",
+      "features": ["Trincheras", "Barricadas", "Bases por equipo", "Torre de vigilancia", "Estilo urbano y bélico"],
+      "bestFor": ["5 vs 5", "2 vs 2"],
+      "playstyle": "Avances por cobertura y control de bases",
+      "image": {
+        "src": "/assets/img/map-war.svg",
+        "width": 640,
+        "height": 440,
+        "alt": "Mapa de Guerra en pixel art: sala isométrica con una trinchera central, bolsas de arena, dos búnkeres con banderas verde y roja, una torre de vigilancia y barreras antitanque."
+      }
+    },
+    {
+      "id": "japon",
+      "name": "Mapa de Japón",
+      "tag": "Templos y neones",
+      "accent": "red",
+      "description": "Estética japonesa tradicional con toques cyberpunk: tejados de pagoda, un torii rojo, faroles de piedra y carteles de neón que iluminan la noche. Sus alturas y rincones lo hacen ideal para emboscadas.",
+      "features": ["Tejados", "Neones", "Templos", "Torii y cerezos", "Emboscadas"],
+      "bestFor": ["1 vs 1", "2 vs 2"],
+      "playstyle": "Emboscadas y combate cuerpo a cuerpo",
+      "image": {
+        "src": "/assets/img/map-japan.svg",
+        "width": 640,
+        "height": 440,
+        "alt": "Mapa de Japón en pixel art: sala isométrica de noche con un ninja sobre un torii rojo, un agente en un tatami, un santuario con techo de pagoda, carteles de neón rosa y celeste, bambú y un cerezo en flor."
+      }
+    }
+  ]
+}

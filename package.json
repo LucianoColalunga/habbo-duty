@@ -1,0 +1,23 @@
+{
+  "name": "habbo-duty",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page de Habbo Duty, juego de combate táctico de la comunidad de Habbo (fan site no oficial).",
+  "license": "MIT",
+  "author": "Luciano Colalunga",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "art": "node tools/art/build-art.mjs",
+    "test": "node --test",
+    "audit": "npm audit --audit-level=low",
+    "check": "npm run build && npm test && npm run audit"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.3"
+  }
+}

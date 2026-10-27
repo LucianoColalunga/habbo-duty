@@ -1,0 +1,23 @@
+# El CLI de Vercel NO lee .gitignore: esto define qué se sube al desplegar.
+# Vercel instala las dependencias y corre el build en sus servidores.
+node_modules/
+dist/
+.git/
+.vercel/
+
+# Secretos y configuración local
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# No hacen falta para el build
+.vscode/
+.idea/
+tests/
+tools/
+*.log
+.DS_Store
+Thumbs.db

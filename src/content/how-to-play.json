@@ -1,0 +1,38 @@
+{
+  "eyebrow": "Primeros pasos",
+  "title": "Cómo empezar",
+  "intro": "En tres pasos estás en el campo de batalla.",
+  "steps": [
+    {
+      "title": "Ten una cuenta en Habbo",
+      "text": "Necesitas una cuenta en el hotel oficial de Habbo. Si todavía no la tienes, regístrate gratis desde la web del hotel.",
+      "icon": "/assets/img/icon-account.svg",
+      "link": "hotel",
+      "linkLabel": "Ir al hotel"
+    },
+    {
+      "title": "Busca la sala de Habbo Duty",
+      "text": "Dentro del hotel, abre el Navegador y busca la sala «{roomName}». Entra y lee las reglas de la sala antes de combatir.",
+      "icon": "/assets/img/icon-search.svg"
+    },
+    {
+      "title": "Equipa tu arma y combate",
+      "text": "Elige pistola, rifle o espada, únete a un equipo y espera el inicio de la ronda. ¡Que gane el mejor keko!",
+      "icon": "/assets/img/icon-combat.svg"
+    }
+  ],
+  "community": {
+    "eyebrow": "Comunidad",
+    "title": "Únete a la comunidad",
+    "text": "Organiza partidas, encuentra clan, propone mapas nuevos y entérate de los torneos en el Discord de la comunidad.",
+    "discordLabel": "Entrar al Discord",
+    "socialTitle": "Síguenos",
+    "rulesTitle": "Código de honor",
+    "rules": [
+      "Respeto ante todo: la pelea es solo dentro del juego.",
+      "Nada de trampas ni programas externos.",
+      "Cumple siempre las normas de Habbo (Habbo Way).",
+      "Ganar o perder, saluda al rival al final de la ronda."
+    ]
+  }
+}

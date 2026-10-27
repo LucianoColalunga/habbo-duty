@@ -1,0 +1,22 @@
+<!doctype html>
+<!-- Plantilla para los íconos PNG (la usa render-png.mjs con ?size=..&pad=..). No se publica. -->
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Ícono Habbo Duty</title>
+<style>
+  body { margin: 0; display: grid; place-items: center; background: #07080a; }
+  img { object-fit: contain; image-rendering: pixelated; }
+</style>
+</head>
+<body>
+  <img id="badge" src="../../public/assets/img/badge.svg" alt="" />
+  <script>
+    const q = new URLSearchParams(location.search);
+    const size = Number(q.get("size")), pad = Number(q.get("pad"));
+    document.body.style.width = document.body.style.height = size + "px";
+    const img = document.getElementById("badge");
+    img.style.width = img.style.height = size - pad * 2 + "px";
+  </script>
+</body>
+</html>

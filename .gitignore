@@ -1,0 +1,23 @@
+# Dependencias y build (se regeneran con npm ci / npm run build)
+node_modules/
+dist/
+
+# Secretos y configuración local: nunca al repositorio
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Vercel CLI (guarda el id del proyecto y del equipo)
+.vercel/
+
+# Herramientas locales, logs y basura del sistema
+.vscode/
+.idea/
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
