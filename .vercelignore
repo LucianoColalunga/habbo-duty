@@ -13,6 +13,9 @@ dist/
 *.p12
 *.pfx
 
+# Copias de repositorios git (pueden traer historial de otros proyectos)
+*.bundle
+
 # No hacen falta para el build
 .vscode/
 .idea/
